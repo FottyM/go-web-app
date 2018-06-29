@@ -1,10 +1,10 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "public"+r.URL.Path)
-	})
-	http.ListenAndServe(":8000", nil)
+	filePath := "../src/github.com/kenigbolo/go-web-app/"
+	http.ListenAndServe(":8000", http.FileServer(http.Dir(filePath+"public")))
 }
