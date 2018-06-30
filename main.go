@@ -8,6 +8,8 @@ import (
 	"github.com/kenigbolo/go-web-app/middleware"
 	"github.com/kenigbolo/go-web-app/templates"
 
+	_ "net/http/pprof"
+
 	_ "github.com/lib/pq"
 )
 
@@ -18,5 +20,6 @@ func main() {
 	db := dbinitializer.ConnectToDatabase()
 	defer db.Close()
 	controller.Startup(filePath, templates)
+	go http.ListenAndServe(":8080", nil)
 	http.ListenAndServeTLS(":8000", filePath+"cert.pem", filePath+"key.pem", &middleware.TimeoutMiddleware{Next: new(middleware.GzipMiddleware)})
 }
