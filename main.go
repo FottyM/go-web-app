@@ -12,5 +12,5 @@ var filePath = "../src/github.com/kenigbolo/go-web-app/"
 func main() {
 	templates := templates.PopulateTemplates(filePath)
 	controller.Startup(filePath, templates)
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":3000", nil)
 }

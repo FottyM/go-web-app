@@ -18,9 +18,12 @@ func Startup(filePath string, templates map[string]*template.Template) {
 		categoryTemplate: templates["shop_details.html"],
 		productTemplate:  templates["shop_detail.html"],
 	}
+	standLocatorController := standLocator{standLocatorTemplate: templates["stand_locator.html"]}
 	// Register Routes
 	homeController.registerRoutes()
 	shopController.registerRoutes()
+	standLocatorController.registerRoutes()
+	// Serve static assests
 	http.Handle("/img/", http.FileServer(http.Dir(filePath+"public")))
 	http.Handle("/css/", http.FileServer(http.Dir(filePath+"public")))
 }
