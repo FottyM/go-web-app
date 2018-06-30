@@ -1,5 +1,9 @@
 package model
 
+import (
+	"fmt"
+)
+
 type Product struct {
 	Name             string
 	DescriptionShort string
@@ -13,6 +17,7 @@ type Product struct {
 	CategoryID       int
 }
 
+// GetProductsForCategory function
 func GetProductsForCategory(categoryID int) []Product {
 	result := []Product{}
 	for _, p := range products {
@@ -23,7 +28,17 @@ func GetProductsForCategory(categoryID int) []Product {
 	return result
 }
 
-var products []Product = []Product{Product{
+// GetProduct function
+func GetProduct(ID int) (*Product, error) {
+	for _, c := range products {
+		if c.ID == ID {
+			return &c, nil
+		}
+	}
+	return nil, fmt.Errorf("Category with ID %v not found", ID)
+}
+
+var products = []Product{Product{
 	Name:             "Lemon Juice",
 	DescriptionShort: "Made from fresh, organic California lemons.",
 	DescriptionLong: `Made from premium, organic Meyer lemons. These fruit are left on the tree until they reach the peak of ripeness and then juiced within 8 hours of being picked.

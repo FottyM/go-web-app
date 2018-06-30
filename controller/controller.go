@@ -8,10 +8,15 @@ import (
 // Startup controller initializing function for templates
 func Startup(filePath string, templates map[string]*template.Template) {
 	// Set up Controllers
-	homeController := home{homeTemplate: templates["home.html"]}
+	homeController := home{
+		homeTemplate:         templates["home.html"],
+		standLocatorTemplate: templates["stand_locator.html"],
+		loginTemplate:        templates["login.html"],
+	}
 	shopController := shop{
 		shopTemplate:     templates["shop.html"],
 		categoryTemplate: templates["shop_details.html"],
+		productTemplate:  templates["shop_detail.html"],
 	}
 	// Register Routes
 	homeController.registerRoutes()
