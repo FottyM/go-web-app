@@ -5,11 +5,13 @@ import (
 	"database/sql"
 	"encoding/base64"
 	"fmt"
+	"log"
 	"time"
 )
 
 const passwordSalt = "a99VVoWzmd1C9ujcitK0fIVNE0I5I61AC47C852RoLTsHDyLCltvP+ZHEkIl/2hkzTOW90c3ZEjtYRkdfTWJ1Q=="
 
+// User model
 type User struct {
 	ID        int
 	Email     string
@@ -19,6 +21,7 @@ type User struct {
 	LastLogin *time.Time
 }
 
+// Login function
 func Login(email, password string) (*User, error) {
 	result := &User{}
 	hasher := sha512.New()
@@ -26,7 +29,6 @@ func Login(email, password string) (*User, error) {
 	hasher.Write([]byte(email))
 	hasher.Write([]byte(password))
 	pwd := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
-	fmt.Println(pwd)
 	row := db.QueryRow(`
 		SELECT id, email, firstname, lastname
 		FROM public.user
@@ -38,6 +40,14 @@ func Login(email, password string) (*User, error) {
 		return nil, fmt.Errorf("User not found")
 	case err != nil:
 		return nil, err
+	}
+	t := time.Now()
+	_, err = db.Exec(`
+		UPDATE public.user
+		SET lastlogin = $1
+		WHERE id = $2`, t, result.ID)
+	if err != nil {
+		log.Printf("Failed to update login time for user %v to %v: %v", result.Email, t, err)
 	}
 	return result, nil
 }

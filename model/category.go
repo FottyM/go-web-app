@@ -1,10 +1,10 @@
 package model
 
 import (
-	"errors"
 	"fmt"
 )
 
+// Category model
 type Category struct {
 	ID          int
 	ImageURL    string
@@ -12,7 +12,7 @@ type Category struct {
 	Description string
 }
 
-var categories []Category = []Category{
+var categories = []Category{
 	Category{
 		ID:       1,
 		ImageURL: "lemon.png",
@@ -39,15 +39,17 @@ var categories []Category = []Category{
 	},
 }
 
+// GetCategories getter
 func GetCategories() []Category {
 	return categories
 }
 
+// GetCategory getter
 func GetCategory(ID int) (*Category, error) {
 	for _, c := range categories {
 		if c.ID == ID {
 			return &c, nil
 		}
 	}
-	return nil, errors.New(fmt.Sprintf("Category with ID %v not found", ID))
+	return nil, fmt.Errorf("Category with ID %v not found", ID)
 }

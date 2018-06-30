@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Product model
 type Product struct {
 	Name             string
 	DescriptionShort string
