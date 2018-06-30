@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/kenigbolo/go-web-app/model"
 	"github.com/kenigbolo/go-web-app/viewmodel"
 )
 
@@ -43,12 +44,15 @@ func (h home) handleLogin(w http.ResponseWriter, r *http.Request) {
 		}
 		email := r.Form.Get("email")
 		password := r.Form.Get("password")
-		if email == "test@test.com" && password == "testing" {
+		if user, errMsg := model.Login(email, password); errMsg == nil {
+			log.Printf("User has logged in: %v\n", user)
 			http.Redirect(w, r, "/home", http.StatusTemporaryRedirect)
 			return
+		} else {
+			log.Printf("Failed to log user in with email: %v, error was: %v\n", email, errMsg)
+			vm.Email = email
+			vm.Password = password
 		}
-		vm.Email = email
-		vm.Password = password
 	}
 	w.Header().Add("Content-Type", "text/html")
 	h.loginTemplate.Execute(w, vm)
