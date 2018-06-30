@@ -15,19 +15,8 @@ var filePath = "../src/github.com/kenigbolo/go-web-app/"
 
 func main() {
 	templates := templates.PopulateTemplates(filePath)
-	// db := dbinitializer.connectToDatabase()
-	// db := connectToDatabase()
 	db := dbinitializer.ConnectToDatabase()
 	defer db.Close()
 	controller.Startup(filePath, templates)
-	http.ListenAndServe(":8000", &middleware.TimeoutMiddleware{Next: new(middleware.GzipMiddleware)})
+	http.ListenAndServeTLS(":8000", filePath+"cert.pem", filePath+"key.pem", &middleware.TimeoutMiddleware{Next: new(middleware.GzipMiddleware)})
 }
-
-// func connectToDatabase() *sql.DB {
-// 	db, err := sql.Open("postgres", "postgres://kenigbolo:kenigbolo@localhost/gowebapp?sslmode=disable")
-// 	if err != nil {
-// 		log.Fatalln(fmt.Errorf("Unable to connect to database: %v", err))
-// 	}
-// 	model.SetDatabase(db)
-// 	return db
-// }
