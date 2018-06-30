@@ -3,16 +3,16 @@
 		<div class="columns small-10 small-offset-1">
 			{{range .Categories}}
 				<div class="row category {{if .IsOrientRight}}orient-right{{else}}orient-left{{end}}">
-					{{if .IsOrientRight}}
-						<div class="columns small-8">
-							<h2>{{.Title}}</h2>
-							<p>{{.Description}}</p>
-						</div>
-						<div class="columns small-4">
-							<img src="/img/{{.ImageURL}}" alt="{{.Alt}}" />
-						</div>
-					{{else}}
-						<a href="{{.URL}}">
+					<a href="{{.URL}}">
+						{{if .IsOrientRight}}
+							<div class="columns small-8">
+								<h2>{{.Title}}</h2>
+								<p>{{.Description}}</p>
+							</div>
+							<div class="columns small-4">
+								<img src="/img/{{.ImageURL}}" alt="{{.Alt}}" />
+							</div>
+						{{else}}
 							<div class="columns small-4">
 								<img src="/img/{{.ImageURL}}" alt="{{.Alt}}" />
 							</div>
@@ -20,8 +20,8 @@
 								<h2>{{.Title}}</h2>
 								<p>{{.Description}}</p>
 							</div>
-						</a>
-					{{end}}
+						{{end}}
+					</a>
 				</div>
 			{{end}}
 		</div>
