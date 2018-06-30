@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/kenigbolo/go-web-app/viewmodel"
 )
 
 var filePath = "../src/github.com/kenigbolo/go-web-app/"
@@ -14,9 +16,16 @@ func main() {
 	templates := populateTemplates()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		requestedFile := r.URL.Path[1:]
-		t := templates[requestedFile+".html"]
-		if t != nil {
-			err := t.Execute(w, nil)
+		template := templates[requestedFile+".html"]
+		var context interface{}
+		switch requestedFile {
+		case "shop":
+			context = viewmodel.NewShop()
+		default:
+			context = viewmodel.NewBase()
+		}
+		if template != nil {
+			err := template.Execute(w, context)
 			if err != nil {
 				log.Println(err)
 			}
@@ -28,13 +37,6 @@ func main() {
 	http.Handle("/css/", http.FileServer(http.Dir(filePath+"public")))
 	http.ListenAndServe(":8000", nil)
 }
-
-// func populateTemplates() *template.Template {
-// 	result := template.New("templates")
-// 	basePath := filePath + "templates"
-// 	template.Must(result.ParseGlob(basePath + "/*.html"))
-// 	return result
-// }
 
 func populateTemplates() map[string]*template.Template {
 	result := make(map[string]*template.Template)
