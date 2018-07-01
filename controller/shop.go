@@ -2,6 +2,7 @@ package controller
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -19,6 +20,7 @@ type shop struct {
 func (s shop) registerRoutes() {
 	http.HandleFunc("/shop", s.handleShop)
 	http.HandleFunc("/shop/", s.handleShop)
+	http.HandleFunc("/products/", s.handleProduct)
 }
 
 func (s shop) handleShop(w http.ResponseWriter, r *http.Request) {
@@ -54,6 +56,7 @@ func (s shop) handleProduct(w http.ResponseWriter, r *http.Request) {
 		}
 		vm := viewmodel.NewProduct(product)
 		w.Header().Add("Content-Type", "text/html")
+		log.Println(vm)
 		s.productTemplate.Execute(w, vm)
 
 	} else {
