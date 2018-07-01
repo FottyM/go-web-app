@@ -2,7 +2,6 @@ package controller
 
 import (
 	"html/template"
-	"log"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -56,9 +55,7 @@ func (s shop) handleProduct(w http.ResponseWriter, r *http.Request) {
 		}
 		vm := viewmodel.NewProduct(product)
 		w.Header().Add("Content-Type", "text/html")
-		log.Println(vm)
 		s.productTemplate.Execute(w, vm)
-
 	} else {
 		http.NotFound(w, r)
 	}

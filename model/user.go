@@ -1,15 +1,13 @@
 package model
 
 import (
-	"crypto/sha512"
 	"database/sql"
-	"encoding/base64"
 	"fmt"
 	"log"
 	"time"
-)
 
-const passwordSalt = "a99VVoWzmd1C9ujcitK0fIVNE0I5I61AC47C852RoLTsHDyLCltvP+ZHEkIl/2hkzTOW90c3ZEjtYRkdfTWJ1Q=="
+	helper "github.com/kenigbolo/go-web-app/helpers"
+)
 
 // User model
 type User struct {
@@ -24,11 +22,7 @@ type User struct {
 // Login function
 func Login(email, password string) (*User, error) {
 	result := &User{}
-	hasher := sha512.New()
-	hasher.Write([]byte(passwordSalt))
-	hasher.Write([]byte(email))
-	hasher.Write([]byte(password))
-	pwd := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
+	pwd := helper.EncryptPassword(email, password)
 	row := db.QueryRow(`
 		SELECT id, email, firstname, lastname
 		FROM public.user
