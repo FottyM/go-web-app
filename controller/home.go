@@ -58,7 +58,6 @@ func (h home) handleLogin(w http.ResponseWriter, r *http.Request) {
 			vm.Email = email
 			vm.Password = password
 		}
-	}
 	w.Header().Add("Content-Type", "text/html")
 	h.loginTemplate.Execute(w, vm)
 }
