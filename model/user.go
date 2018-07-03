@@ -45,3 +45,18 @@ func Login(email, password string) (*User, error) {
 	}
 	return result, nil
 }
+
+// Signup Function
+func Signup(email, firstName, lastName, password string) (*User, error) {
+	pwd := helper.EncryptPassword(email, password)
+	sqlStatement := `
+	INSERT INTO public.user(email, firstname, lastname, password)
+	VALUES ($1, $2, $3, $4)
+	RETURNING id`
+	id := 0
+	err := db.QueryRow(sqlStatement, email, firstName, lastName, pwd).Scan(&id)
+	if err != nil {
+		panic(err)
+	}
+	return Login(email, password)
+}

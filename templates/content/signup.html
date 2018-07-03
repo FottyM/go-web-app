@@ -1,0 +1,58 @@
+{{define "content"}}
+	<div class="row login">
+		<div class="columns small-6 small-offset-3">
+			<fieldset>
+				<legend>Signup</legend>
+				<form action="/signup" method="post" class="row">
+					<div class="row">
+						<div class="columns small-6 text-right">
+							email
+						</div>
+						<div class="columns small-6">
+							<input type="text" name="email" value="{{.Email}}"/>
+						</div>
+					</div>
+          <div class="row">
+            <div class="columns small-6 text-right">
+              first name
+            </div>
+            <div class="columns small-6">
+              <input type="text" name="first-name" value="{{.FirstName}}"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="columns small-6 text-right">
+              last name
+            </div>
+            <div class="columns small-6">
+              <input type="text" name="last-name" value="{{.FirstName}}"/>
+            </div>
+          </div>
+					<div class="row">
+						<div class="columns small-6 text-right">
+							password
+						</div>
+						<div class="columns small-6">
+							<input type="password" name="password" value="{{.Password}}"/>
+						</div>
+					</div>
+          <div class="row">
+						<div class="columns small-6 text-right">
+							password confirmation
+						</div>
+						<div class="columns small-6">
+							<input type="password" name="password-confirmation" value="{{.PasswordConfirmation}}"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="columns small-12 text-right">
+							<button class="small">
+								Signup
+							</button>
+						</div>
+					</div>
+				</form>
+			</fieldset>
+		</div>
+	</div>
+{{end}}

@@ -12,6 +12,7 @@ func Startup(filePath string, templates map[string]*template.Template) {
 		homeTemplate:         templates["home.html"],
 		standLocatorTemplate: templates["stand_locator.html"],
 		loginTemplate:        templates["login.html"],
+		signupTemplate:       templates["signup.html"],
 	}
 	shopController := shop{
 		shopTemplate:     templates["shop.html"],
