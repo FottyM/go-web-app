@@ -2,8 +2,12 @@ package viewmodel
 
 // StandLocator struct
 type StandLocator struct {
-	Title  string
-	Active string
+	Title        string
+	Active       string
+	Alert        string
+	AlertMessage string
+	AlertDanger  string
+	AlertSuccess string
 }
 
 // StandCoordinate struct
@@ -18,5 +22,6 @@ func NewStandLocator() StandLocator {
 	return StandLocator{
 		Active: "standlocator",
 		Title:  "Lemonade Stand Supply - Stand Locator",
+		Alert:  "invisible",
 	}
 }

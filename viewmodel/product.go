@@ -8,9 +8,13 @@ import (
 
 // ProductViewModel struct
 type ProductViewModel struct {
-	Title   string
-	Active  string
-	Product Product
+	Title        string
+	Active       string
+	Alert        string
+	AlertMessage string
+	AlertDanger  string
+	AlertSuccess string
+	Product      Product
 }
 
 // Product struct
@@ -46,5 +50,6 @@ func NewProduct(product *model.Product) ProductViewModel {
 		Title:   "Lemonade Stand Supply - Shop",
 		Active:  "shop",
 		Product: productToVM(product),
+		Alert:   "invisible",
 	}
 }

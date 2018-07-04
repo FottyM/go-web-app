@@ -1,37 +1,20 @@
 {{define "content"}}
-	<div class="row login">
-		<div class="columns small-6 small-offset-3">
-			<fieldset>
-				<legend>Login</legend>
-				<form action="/login" method="post" class="row">
-					<div class="row">
-						<div class="columns small-6 text-right">
-							email
-						</div>
-						<div class="columns small-6">
-							<input type="text" name="email" value="{{.Email}}"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="columns small-6 text-right">
-							password
-						</div>
-						<div class="columns small-6">
-							<input type="password" name="password" value="{{.Password}}"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="columns small-12 text-right">
-							<a class="password-reset">
-								I forgot my password
-							</a>
-							<button class="small">
-								Login
-							</button>
-						</div>
-					</div>
-				</form>
-			</fieldset>
+	<div class="container">
+		<div class="col-sm-6 sm-offset-3">
+			<form action="/login" method="post">
+				<div class="form-group">
+					<label for="inputEmail">Email</label>
+					<input id="inputEmail" type="email" name="email" value="{{.Email}}" class="form-control" placeholder="Email"/>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword">Password</label>
+					<input id="inputPassword" type="password" name="password" class="form-control" value="{{.Password}}" placeholder="Password">
+				</div>
+				<div class="checkbox">
+					<label><input type="checkbox"> Remember me</label>
+				</div>
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
 		</div>
 	</div>
 {{end}}

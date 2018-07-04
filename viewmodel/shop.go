@@ -8,9 +8,13 @@ import (
 
 // Shop struct
 type Shop struct {
-	Title      string
-	Active     string
-	Categories []Category
+	Title        string
+	Active       string
+	Alert        string
+	AlertMessage string
+	AlertDanger  string
+	AlertSuccess string
+	Categories   []Category
 }
 
 // Category struct
@@ -28,6 +32,7 @@ func NewShop(categories []model.Category) Shop {
 	result := Shop{
 		Title:  "Lemonade Stand Supply - Shop",
 		Active: "shop",
+		Alert:  "invisible",
 	}
 	result.Categories = make([]Category, len(categories))
 	for i := 0; i < len(categories); i++ {

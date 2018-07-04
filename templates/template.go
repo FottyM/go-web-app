@@ -11,7 +11,7 @@ func PopulateTemplates(filePath string) map[string]*template.Template {
 	result := make(map[string]*template.Template)
 	basePath := filePath + "templates"
 	layout := template.Must(template.ParseFiles(basePath + "/_layout.html"))
-	template.Must(layout.ParseFiles(basePath+"/_header.html", basePath+"/_footer.html"))
+	template.Must(layout.ParseFiles(basePath+"/_header.html", basePath+"/_footer.html", basePath+"/_alerts.html"))
 	dir, err := os.Open(basePath + "/content")
 	if err != nil {
 		panic("Failed to open template blocks directory: " + err.Error())

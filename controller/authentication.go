@@ -31,11 +31,13 @@ func (auth authentication) handleLogin(w http.ResponseWriter, r *http.Request) {
 		password := r.Form.Get("password")
 		var errMsg string
 		if user, errMsg := model.Login(email, password); errMsg == nil {
+			vm = LoginAlertHelper("success", "Logged in successfully", vm)
 			log.Printf("User has logged in: %v\n", user)
 			http.Redirect(w, r, "/home", http.StatusTemporaryRedirect)
 			return
 		}
 		log.Printf("Failed to log user in with email: %v, error was: %v\n", email, errMsg)
+		vm = LoginAlertHelper("danger", "Failed to log in", vm)
 		vm.Email = email
 		vm.Password = password
 	}
@@ -56,12 +58,14 @@ func (auth authentication) handleSignup(w http.ResponseWriter, r *http.Request) 
 		password := r.Form.Get("password")
 		passwordConfirmation := r.Form.Get("password-confirmation")
 		if password != passwordConfirmation {
+			vm = SignupAlertHelper("danger", "Password Missmatch. Please check your password", vm)
 			log.Println("Password Missmatch")
-			http.Redirect(w, r, "/signup", http.StatusTemporaryRedirect)
+			auth.signupTemplate.Execute(w, vm)
 			return
 		}
 		var errMsg string
 		if user, errMsg := model.Signup(email, firstName, lastName, password); errMsg == nil {
+			vm = SignupAlertHelper("success", "Congratulations! You have been registered successfully", vm)
 			log.Printf("User successfully signed up: %v\n", user)
 			http.Redirect(w, r, "/home", http.StatusTemporaryRedirect)
 			return

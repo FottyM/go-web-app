@@ -1,58 +1,30 @@
 {{define "content"}}
-	<div class="row login">
-		<div class="columns small-6 small-offset-3">
-			<fieldset>
-				<legend>Signup</legend>
-				<form action="/signup" method="post" class="row">
-					<div class="row">
-						<div class="columns small-6 text-right">
-							email
-						</div>
-						<div class="columns small-6">
-							<input type="text" name="email" value="{{.Email}}"/>
-						</div>
-					</div>
-          <div class="row">
-            <div class="columns small-6 text-right">
-              first name
-            </div>
-            <div class="columns small-6">
-              <input type="text" name="first-name" value="{{.FirstName}}"/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="columns small-6 text-right">
-              last name
-            </div>
-            <div class="columns small-6">
-              <input type="text" name="last-name" value="{{.FirstName}}"/>
-            </div>
-          </div>
-					<div class="row">
-						<div class="columns small-6 text-right">
-							password
-						</div>
-						<div class="columns small-6">
-							<input type="password" name="password" value="{{.Password}}"/>
-						</div>
-					</div>
-          <div class="row">
-						<div class="columns small-6 text-right">
-							password confirmation
-						</div>
-						<div class="columns small-6">
-							<input type="password" name="password-confirmation" value="{{.PasswordConfirmation}}"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="columns small-12 text-right">
-							<button class="small">
-								Signup
-							</button>
-						</div>
-					</div>
-				</form>
-			</fieldset>
+	<div class="container">
+		<div class="col-sm-6 sm-offset-3">
+			<form action="/signup" method="post">
+				<div class="form-group">
+					<label for="inputEmail">Email</label>
+					<input id="inputEmail" type="email" name="email" value="{{.Email}}" class="form-control" placeholder="Email"/>
+				</div>
+				<div class="form-group">
+					<label for="inputFirstName">Email</label>
+					<input type="text" name="first-name" value="{{.FirstName}}" class="form-control" placeholder="First Name"/>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail">Email</label>
+					<input type="text" name="last-name" value="{{.LastName}}" class="form-control" placeholder="Last Name"/>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword">Password</label>
+					<input id="inputPassword" type="password" name="password" class="form-control" value="{{.Password}}" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="inputPasswordConfirmation">Password</label>
+					<input id="inputPasswordConfirmation" type="password" name="password-confirmation" class="form-control" value="{{.PasswordConfirmation}}" placeholder="Confirm Password"/>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Signup</button>
+			</form>
 		</div>
 	</div>
 {{end}}

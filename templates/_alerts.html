@@ -1,0 +1,15 @@
+<div class="container {{ .Alert}}">
+    <div class="alert alert-success text-center col-sm-6 offset-sm-3 alert-dismissible fade show {{ .AlertSuccess}}" role="alert">
+        {{ .AlertMessage}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger text-center col-sm-6 offset-sm-3 alert-dismissible fade show {{ .AlertDanger}}" role="alert">
+        {{ .AlertMessage}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+

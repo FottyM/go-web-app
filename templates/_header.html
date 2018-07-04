@@ -1,36 +1,28 @@
-<header class="row">
-    <div class="columns small-2">
-        <div class="logo-container">
-            <div class="logo"></div>
-            <h1>Lemonade Stand Supply</h1>
-        </div>
+<!-- Image and text -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Lemonade Stand Supply
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item {{if .Active}} {{ if eq .Active "home"}} active {{end}} {{end}}">
+            <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item {{if .Active}} {{ if eq .Active "shop"}} active {{end}} {{end}}">
+            <a class="nav-link" href="/shop">Shop</a>
+        </li>
+        <li class="nav-item {{if .Active}} {{ if eq .Active "standlocator"}} active {{end}} {{end}}">
+            <a class="nav-link" href="/stand_locator">Stand Locator</a>
+        </li>
+        </ul>
+        <span class="navbar-text">
+            <a href="/login">Login</a> | 
+            <a href="/signup">Signup</a>
+            <a href="#"><img src="/img/cart_small.png" alt="cart" /></a>
+        </span>
     </div>
-    <div class="columns small-10">
-        <div class="row">
-            <div class="columns small-1 small-offset-9">
-                <a class="secondary-color tiny" href="/login"> login </a>
-            </div>
-            <div class="columns small-1 small-offset-9">
-                <a class="secondary-color tiny" href="/signup"> Signup </a>
-            </div>
-            <div class="columns small-2">
-                <img src="/img/cart_small.png" alt="cart" />
-            </div>
-        </div>
-        <div class="row">
-            <nav class="columns small-6 small-offset-6">
-                <div class="row">
-                    <div class="columns small-3 item">
-                        <a href="/home" class="{{if .Active}} {{ if eq .Active "home"}} active {{end}} {{end}}">Home</a>
-                    </div>
-                    <div class="columns small-3 item">
-                        <a href="/shop" class="{{if .Active}} {{ if eq .Active "shop"}} active {{end}} {{end}}">Shop</a>
-                    </div>
-                    <div class="columns small-6 item">
-                        <a href="/stand_locator" class="{{if .Active}} {{ if eq .Active "standlocator"}} active {{end}} {{end}}">Stand Locator</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
+</nav>

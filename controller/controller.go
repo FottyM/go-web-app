@@ -30,4 +30,5 @@ func Startup(filePath string, templates map[string]*template.Template) {
 	// Serve static assests
 	http.Handle("/img/", http.FileServer(http.Dir(filePath+"public")))
 	http.Handle("/css/", http.FileServer(http.Dir(filePath+"public")))
+	http.Handle("/js/", http.FileServer(http.Dir(filePath+"public")))
 }
