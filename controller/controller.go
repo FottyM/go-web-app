@@ -11,8 +11,10 @@ func Startup(filePath string, templates map[string]*template.Template) {
 	homeController := home{
 		homeTemplate:         templates["home.html"],
 		standLocatorTemplate: templates["stand_locator.html"],
-		loginTemplate:        templates["login.html"],
-		signupTemplate:       templates["signup.html"],
+	}
+	authController := authentication{
+		loginTemplate:  templates["login.html"],
+		signupTemplate: templates["signup.html"],
 	}
 	shopController := shop{
 		shopTemplate:     templates["shop.html"],
@@ -24,6 +26,7 @@ func Startup(filePath string, templates map[string]*template.Template) {
 	homeController.registerRoutes()
 	shopController.registerRoutes()
 	standLocatorController.registerRoutes()
+	authController.registerRoutes()
 	// Serve static assests
 	http.Handle("/img/", http.FileServer(http.Dir(filePath+"public")))
 	http.Handle("/css/", http.FileServer(http.Dir(filePath+"public")))

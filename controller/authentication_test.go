@@ -9,13 +9,13 @@ import (
 )
 
 func TestLoginExecutesCorrectTemplate(t *testing.T) {
-	h := new(home)
+	auth := new(authentication)
 	expected := `login template`
-	h.loginTemplate, _ = template.New("").Parse(expected)
+	auth.loginTemplate, _ = template.New("").Parse(expected)
 	r := httptest.NewRequest(http.MethodGet, "/login", nil)
 	w := httptest.NewRecorder()
 
-	h.handleLogin(w, r)
+	auth.handleLogin(w, r)
 
 	actual, _ := ioutil.ReadAll(w.Result().Body)
 
